@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/SamVerschueren/gulp-cordova-build-android/issues"
   },
-  "homepage": "https://github.com/SamVerschueren/gulp-cordova-build-android"
+  "homepage": "https://github.com/SamVerschueren/gulp-cordova-build-android",
+  "dependencies": {
+    "q": "^1.2.0"
+  }
 }
