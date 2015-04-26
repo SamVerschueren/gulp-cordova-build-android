@@ -27,6 +27,10 @@ module.exports = function() {
         cb();
     }, function(cb) {
         Q.fcall(function() {
+            // First remove the platform because adding the platform twice
+            // is not possible.
+            return cordova.platforms('rm', 'android');
+        }).then(function() {
             // Add the android platform
             return cordova.platforms('add', 'android');
         }).then(function() {
