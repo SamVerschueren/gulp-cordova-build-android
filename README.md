@@ -39,12 +39,12 @@ var gulp = require('gulp'),
     android = require('gulp-cordova-build-android');
 
 gulp.task('rebuild', function() {
-    return gulp.src('dist')
+    return gulp.src('.cordova')
         .pipe(android(true));
 });
 ```
 
-This task will copy the ```dist``` folder to the ```www``` folder of cordova project and then execute the following commands.
+This task will simply remove the android platform, add it again and rebuild it.
 
 ```bash
 $ cordova platform remove android
@@ -52,7 +52,7 @@ $ cordova platform add android
 $ cordova build android
 ```
 
-If no parameter is provided, it will just copy ```dist``` directory to ```www``` and execute the build command.
+If no parameter is provided, it will only build the platform.
 
 ## Related
 
