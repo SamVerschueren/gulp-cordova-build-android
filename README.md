@@ -19,7 +19,7 @@ var gulp = require('gulp'),
     android = require('gulp-cordova-build-android');
 
 gulp.task('build', function() {
-    return gulp.src('www')
+    return gulp.src('dist')
         .pipe(create())
         .pipe(plugin('org.apache.cordova.dialogs'))
         .pipe(plugin('org.apache.cordova.camera'))
@@ -29,10 +29,34 @@ gulp.task('build', function() {
 
 This plugin will build the cordova project for the Android platform.
 
+### Re-adding the android platform
+
+The ```android()``` method accepts one optional parameter. If the parameter passed in is ```true```, it will first
+remove the entire android platform and add it again.
+
+```JavaScript
+var gulp = require('gulp'),
+    android = require('gulp-cordova-build-android');
+
+gulp.task('rebuild', function() {
+    return gulp.src('dist')
+        .pipe(android(true));
+});
+```
+
+This task will copy the ```dist``` folder to the ```www``` folder of cordova project and then execute the following commands.
+
+```bash
+$ cordova platform remove android
+$ cordova platform add android
+$ cordova build android
+```
+
+If no parameter is provided, it will just copy ```dist``` directory to ```www``` and execute the build command.
+
 ## Related
 
-- [`gulp-cordova-create`](https://github.com/SamVerschueren/gulp-cordova-create) for creating a cordova project.
-- [`gulp-cordova-plugin`](https://github.com/SamVerschueren/gulp-cordova-plugin) for adding a plugin to your cordova project.
+See [`gulp-cordova`](https://github.com/SamVerschueren/gulp-cordova) for the full list of available packages.
 
 ## Contributors
 

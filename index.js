@@ -9,13 +9,15 @@
 
 // module dependencies
 var path = require('path'),
+    fs = require('fs'),
     through = require('through2'),
     gutil = require('gulp-util'),
     Q = require('q'),
-    cordova = require('cordova-lib').cordova.raw;
+    cordovaLib = require('cordova-lib').cordova,
+    cordova = cordovaLib.raw;
 
 // export the module
-module.exports = function() {
+module.exports = function(rm) {
 
     return through.obj(function(file, enc, cb) {
         // Change the working directory
@@ -26,16 +28,22 @@ module.exports = function() {
 
         cb();
     }, function(cb) {
+        var exists = fs.existsSync(path.join(cordovaLib.findProjectRoot(), 'platforms', 'android')),
+            reAdd = exists === true && rm === true;
+
         Q.fcall(function() {
-            // First remove the platform because adding the platform twice
-            // is not possible.
-            return cordova.platforms('rm', 'android');
+            if(reAdd) {
+                // First remove the platform if we have to re-add it
+                return cordova.platforms('rm', 'android');
+            }
         }).then(function() {
-            // Add the android platform
-            return cordova.platforms('add', 'android');
+            if(exists === false || reAdd) {
+                // Add the android platform if it does not exist or we have to re-add it
+                return cordova.platforms('add', 'android');
+            }
         }).then(function() {
             // Build the platform
-            return cordova.build();
+            return cordova.build({platforms: ['android']});
         }).then(cb).catch(function(err) {
             // Return an error if something happened
             cb(new gutil.PluginError('gulp-cordova-build-android', err.message));
