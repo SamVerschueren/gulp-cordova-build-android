@@ -1,14 +1,12 @@
 # gulp-cordova-build-android
 
-> This step builds the cordova project for the Android platform
+> Build the cordova project for the Android platform.
 
 ## Installation
 
 ```bash
 npm install --save-dev gulp-crodva-build-android
 ```
-
-**Not yet available**
 
 ## Usage
 
