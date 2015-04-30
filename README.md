@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-npm install --save-dev gulp-crodva-build-android
+npm install --save-dev gulp-cordova-build-android
 ```
 
 ## Usage
