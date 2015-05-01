@@ -61,7 +61,7 @@ store the `android-release.apk` file in the `apk` directory.
 
 ##### storeFile
 
-*required*
+*Required*  
 Type: `string`
 
 Absolute path to your key file.
@@ -74,7 +74,7 @@ The key store password.
 
 ##### keyAlias
 
-*required*
+*Required*  
 Type: `string`
 
 The alias of the key.
