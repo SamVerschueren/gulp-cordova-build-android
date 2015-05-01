@@ -1,6 +1,6 @@
 {
   "name": "gulp-cordova-build-android",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Build the cordova project for the Android platform.",
   "main": "index.js",
   "scripts": {
