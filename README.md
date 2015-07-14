@@ -31,10 +31,30 @@ This plugin will build the cordova project for the Android platform.
 Because the plugin returns the apk file, you can pipe it to ```gulp.dest```. This will store the ```android-debug.apk``` file
 in the ```apk``` directory.
 
+### Build a release apk
+
+By setting release to true, the plugin will build a release version of the SDK. This will store the ```android-release-unsigned.apk```
+file in the ```apk``` directory.
+
+```JavaScript
+var gulp = require('gulp'),
+    create = require('gulp-cordova-create'),
+    plugin = require('gulp-cordova-plugin'),
+    android = require('gulp-cordova-build-android');
+
+gulp.task('build', function() {
+    return gulp.src('dist')
+        .pipe(create())
+        .pipe(plugin('org.apache.cordova.dialogs'))
+        .pipe(plugin('org.apache.cordova.camera'))
+        .pipe(android({ release: true }))
+        .pipe(gulp.dest('apk'));
+```
+
 ### Sign the apk
 
-By not passing any options to the plugin, you will receive a debug version of your apk. It's possible to let the plugin
-do the heavy lifting and let it create a signed release version.
+To produce a signed apk you need to pass signing options to the plugin. If you pass signing options to the plugin you do not need to
+specify that it is a release build as the plugin will do a release build automatically
 
 ```JavaScript
 var gulp = require('gulp'),
@@ -58,6 +78,12 @@ store the `android-release.apk` file in the `apk` directory.
 ### android([options])
 
 #### options
+
+##### release
+
+Type: `boolean`
+
+Set the build to be a release build.
 
 ##### storeFile
 
@@ -84,6 +110,12 @@ The alias of the key.
 Type: `string`
 
 The password of the key alias.
+
+##### storeType
+
+Type: `string`
+
+The format of the key file. The default is to auto-detect based on the file extension.
 
 ## Related
 

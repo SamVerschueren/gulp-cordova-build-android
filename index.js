@@ -30,7 +30,8 @@ module.exports = function(options) {
     }, function(cb) {
         var self = this,
             androidPath = path.join(cordovaLib.findProjectRoot(), 'platforms', 'android'),
-            release = options.storeFile && options.keyAlias;
+            sign = options.storeFile && options.keyAlias,
+            release = options.release || sign;
 
         Q.fcall(function() {
             return fs.existsSync(androidPath);
@@ -40,14 +41,22 @@ module.exports = function(options) {
                 return cordova.platforms('add', 'android');
             }
         }).then(function() {
-            if(release) {
+            if(sign) {
                 var data = [];
 
-                // Iterate over all the options and add them to the array that will be written to the properties file
-                for(var key in options) {
-                    data.push(key + '=' + options[key]);
+                // Add all the options related to key signing to the array to be added to 'release-signing.properties'
+                data.push('storeFile=' + options.storeFile);
+                data.push('keyAlias=' + options.keyAlias);
+                if(options.storePassword) {
+                    data.push('storePassword=' + options.storePassword);
                 }
-
+                if(options.keyPassword) {
+                    data.push('keyPassword=' + options.keyPassword);
+                }
+                if(options.storeType) {
+                    data.push('storeType=' + options.storeType);
+                }
+                
                 // Write the release-signing.properties file
                 fs.writeFileSync(path.join(androidPath, 'release-signing.properties'), data.join(os.EOL));
             }
@@ -66,16 +75,19 @@ module.exports = function(options) {
                 cwd = process.env.PWD,
                 contents;
 
-            if(release) {
+            if(sign) {
                 // Define the release variables
                 path = path.join(base, 'android-release.apk');
-                contents = fs.readFileSync(path);
-            }
+            } else if (release) {
+                // Define the unsigned release variables
+                path = path.join(base, 'android-release-unsigned.apk');
+             }
             else {
                 // Define the debug variables
                 path = path.join(base, 'android-debug.apk');
-                contents = fs.readFileSync(path);
             }
+            
+            contents = fs.readFileSync(path);
 
             // Make sure the apk is passed to the next step
             self.push(new gutil.File({
