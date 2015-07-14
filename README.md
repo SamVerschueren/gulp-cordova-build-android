@@ -111,6 +111,12 @@ Type: `string`
 
 The password of the key alias.
 
+##### storeType
+
+Type: `string`
+
+The format of the key file. The default is to auto-detect based on the file extension.
+
 ## Related
 
 See [`gulp-cordova`](https://github.com/SamVerschueren/gulp-cordova) for the full list of available packages.

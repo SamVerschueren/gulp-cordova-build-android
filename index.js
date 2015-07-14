@@ -53,6 +53,9 @@ module.exports = function(options) {
                 if(options.keyPassword) {
                     data.push('keyPassword=' + options.keyPassword);
                 }
+                if(options.storeType) {
+                    data.push('storeType=' + options.storeType);
+                }
                 
                 // Write the release-signing.properties file
                 fs.writeFileSync(path.join(androidPath, 'release-signing.properties'), data.join(os.EOL));
