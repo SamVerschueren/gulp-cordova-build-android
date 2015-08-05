@@ -10,7 +10,7 @@ npm install --save-dev gulp-cordova-build-android
 
 ## Usage
 
-```JavaScript
+```javascript
 var gulp = require('gulp'),
     create = require('gulp-cordova-create'),
     plugin = require('gulp-cordova-plugin'),
@@ -36,7 +36,7 @@ in the ```apk``` directory.
 By setting release to true, the plugin will build a release version of the SDK. This will store the ```android-release-unsigned.apk```
 file in the ```apk``` directory.
 
-```JavaScript
+```javascript
 var gulp = require('gulp'),
     create = require('gulp-cordova-create'),
     plugin = require('gulp-cordova-plugin'),
@@ -56,7 +56,7 @@ gulp.task('build', function() {
 To produce a signed apk you need to pass signing options to the plugin. If you pass signing options to the plugin you do not need to
 specify that it is a release build as the plugin will do a release build automatically
 
-```JavaScript
+```javascript
 var gulp = require('gulp'),
     create = require('gulp-cordova-create'),
     plugin = require('gulp-cordova-plugin'),
