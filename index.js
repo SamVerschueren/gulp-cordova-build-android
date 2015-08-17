@@ -72,33 +72,27 @@ module.exports = function(options) {
             return cordova.build({platforms: ['android'], options: options});
         }).then(function() {
             var base = path.join(androidPath, 'build/outputs/apk'),
-                cwd = process.env.PWD,
-                contents;
-
-            if(sign) {
-                // Define the release variables
-                path = path.join(base, 'android-release.apk');
-            } else if (release) {
-                // Define the unsigned release variables
-                path = path.join(base, 'android-release-unsigned.apk');
-             }
-            else {
-                // Define the debug variables
-                path = path.join(base, 'android-debug.apk');
-            }
+                cwd = process.env.PWD;
             
-            contents = fs.readFileSync(path);
-
-            // Make sure the apk is passed to the next step
-            self.push(new gutil.File({
-                base: base,
-                cwd: cwd,
-                path: path,
-                contents: contents
-            }));
+            // Iterate over the output directory
+            fs.readdirSync(base).forEach(function(file) {
+                // Check if the file ends with .apk
+                if(~file.indexOf('.apk')) {
+                    var filePath = path.join(base, file);
+                    
+                    // Push the file to the result set
+                    self.push(new gutil.File({
+                        base: base,
+                        cwd: cwd,
+                        path: filePath,
+                        contents: fs.readFileSync(path.join(base, file))
+                    }));
+                }
+            });
 
             cb();
         }).catch(function(err) {
+            console.log(err);
             // Return an error if something happened
             cb(new gutil.PluginError('gulp-cordova-build-android', err.message));
         });
