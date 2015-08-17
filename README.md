@@ -28,13 +28,12 @@ gulp.task('build', function() {
 
 This plugin will build the cordova project for the Android platform.
 
-Because the plugin returns the apk file, you can pipe it to ```gulp.dest```. This will store the ```android-debug.apk``` file
-in the ```apk``` directory.
+Because the plugin returns the apk files, you can pipe it to `gulp.dest`. This will store all the apk files
+in the `apk` directory.
 
 ### Build a release apk
 
-By setting release to true, the plugin will build a release version of the SDK. This will store the ```android-release-unsigned.apk```
-file in the ```apk``` directory.
+By setting release to true, the plugin will build a release version of the APK. This will create an unsigned apk file.
 
 ```javascript
 var gulp = require('gulp'),
@@ -47,7 +46,7 @@ gulp.task('build', function() {
         .pipe(create())
         .pipe(plugin('org.apache.cordova.dialogs'))
         .pipe(plugin('org.apache.cordova.camera'))
-        .pipe(android({ release: true }))
+        .pipe(android({release: true}))
         .pipe(gulp.dest('apk'));
 ```
 
@@ -70,8 +69,7 @@ gulp.task('build', function() {
 });
 ```
 
-When running the `build` task, it will now ask for the key store password and for the key password. When the apk is signed, it will
-store the `android-release.apk` file in the `apk` directory.
+When running the `build` task, it will now ask for the key store password and for the key password.
 
 ## API
 
