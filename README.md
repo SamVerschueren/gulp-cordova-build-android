@@ -48,6 +48,7 @@ gulp.task('build', function() {
         .pipe(plugin('org.apache.cordova.camera'))
         .pipe(android({release: true}))
         .pipe(gulp.dest('apk'));
+});
 ```
 
 ### Sign the apk
