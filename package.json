@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/SamVerschueren/gulp-cordova-build-android",
   "dependencies": {
-    "cordova-lib": "^5.0.0",
+    "cordova-lib": "^6.0.0",
     "gulp-util": "^3.0.4",
     "q": "^1.2.0",
     "through2": "^2.0.0"
