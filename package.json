@@ -4,7 +4,7 @@
   "description": "Build the cordova project for the Android platform.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "xo"
   },
   "repository": {
     "type": "git",
@@ -31,5 +31,8 @@
     "gulp-util": "^3.0.4",
     "q": "^1.2.0",
     "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "xo": "^0.13.0"
   }
 }

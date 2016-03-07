@@ -2,21 +2,23 @@
 
 > Build the cordova project for the Android platform.
 
+
 ## Installation
 
-```bash
+```
 npm install --save-dev gulp-cordova-build-android
 ```
 
+
 ## Usage
 
-```javascript
-var gulp = require('gulp'),
-    create = require('gulp-cordova-create'),
-    plugin = require('gulp-cordova-plugin'),
-    android = require('gulp-cordova-build-android');
+```js
+const gulp = require('gulp');
+const create = require('gulp-cordova-create');
+const plugin = require('gulp-cordova-plugin');
+const android = require('gulp-cordova-build-android');
 
-gulp.task('build', function() {
+gulp.task('build', () => {
     return gulp.src('dist')
         .pipe(create())
         .pipe(plugin('org.apache.cordova.dialogs'))
@@ -35,13 +37,13 @@ in the `apk` directory.
 
 By setting release to true, the plugin will build a release version of the APK. This will create an unsigned apk file.
 
-```javascript
-var gulp = require('gulp'),
-    create = require('gulp-cordova-create'),
-    plugin = require('gulp-cordova-plugin'),
-    android = require('gulp-cordova-build-android');
+```js
+const gulp = require('gulp');
+const create = require('gulp-cordova-create');
+const plugin = require('gulp-cordova-plugin');
+const android = require('gulp-cordova-build-android');
 
-gulp.task('build', function() {
+gulp.task('build', () => {
     return gulp.src('dist')
         .pipe(create())
         .pipe(plugin('org.apache.cordova.dialogs'))
@@ -56,13 +58,13 @@ gulp.task('build', function() {
 To produce a signed apk you need to pass signing options to the plugin. If you pass signing options to the plugin you do not need to
 specify that it is a release build as the plugin will do a release build automatically
 
-```javascript
-var gulp = require('gulp'),
-    create = require('gulp-cordova-create'),
-    plugin = require('gulp-cordova-plugin'),
-    android = require('gulp-cordova-build-android');
+```js
+const gulp = require('gulp');
+const create = require('gulp-cordova-create');
+const plugin = require('gulp-cordova-plugin');
+const android = require('gulp-cordova-build-android');
 
-gulp.task('build', function() {
+gulp.task('build', () => {
     return gulp.src('dist')
         .pipe(create())
         .pipe(android({storeFile: '/Path/to/key.keystore', keyAlias: 'my_alias'}))
@@ -71,6 +73,7 @@ gulp.task('build', function() {
 ```
 
 When running the `build` task, it will now ask for the key store password and for the key password.
+
 
 ## API
 
@@ -116,13 +119,11 @@ Type: `string`
 
 The format of the key file. The default is to auto-detect based on the file extension.
 
+
 ## Related
 
 See [`gulp-cordova`](https://github.com/SamVerschueren/gulp-cordova) for the full list of available packages.
 
-## Contributors
-
-- Sam Verschueren [<sam.verschueren@gmail.com>]
 
 ## License
 
