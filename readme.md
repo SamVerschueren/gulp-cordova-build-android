@@ -119,6 +119,11 @@ Type: `string`
 
 The format of the key file. The default is to auto-detect based on the file extension.
 
+##### version
+
+Type: `string`
+
+Version of [`cordova-android`](https://github.com/apache/cordova-android) platform plugin.
 
 ## Related
 

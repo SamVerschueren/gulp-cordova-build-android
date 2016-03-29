@@ -28,7 +28,7 @@ module.exports = function (options) {
 		}).then(function (exists) {
 			if (!exists) {
 				// Add the android platform if it does not exist
-				return cordova.platforms('add', 'android');
+				return cordova.platforms('add', 'android' + (options.version ? ('@' + options.version) : ''));
 			}
 		}).then(function () {
 			if (sign) {
