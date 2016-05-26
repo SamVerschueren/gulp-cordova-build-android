@@ -125,6 +125,14 @@ Type: `string`
 
 Version of [`cordova-android`](https://github.com/apache/cordova-android) platform plugin.
 
+##### buildMethod
+
+Type: `string`  
+Default: `gradle`
+
+Build method to use. Either `ant` or `gradle`. 
+
+
 ## Related
 
 See [`gulp-cordova`](https://github.com/SamVerschueren/gulp-cordova) for the full list of available packages.

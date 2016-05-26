@@ -22,6 +22,7 @@ module.exports = function (options) {
 		var androidPath = path.join(cordovaLib.findProjectRoot(), 'platforms', 'android');
 		var sign = options.storeFile && options.keyAlias;
 		var release = options.release || sign;
+		var buildMethod = options.buildMethod || process.env.ANDROID_BUILD;
 
 		Q.fcall(function () {
 			return fs.existsSync(androidPath);
@@ -58,10 +59,17 @@ module.exports = function (options) {
 				options.push('--release');
 			}
 
+			if (buildMethod === 'ant') {
+				options.push('--ant');
+			} else {
+				options.push('--gradle');
+			}
+
 			// Build the platform
 			return cordova.build({platforms: ['android'], options: options});
 		}).then(function () {
-			var base = path.join(androidPath, 'build/outputs/apk');
+			var apkOutputPath = buildMethod === 'ant' ? 'bin' : 'build/outputs/apk';
+			var base = path.join(androidPath, apkOutputPath);
 			var cwd = process.env.PWD;
 
 			// Iterate over the output directory
