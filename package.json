@@ -20,12 +20,11 @@
 		"android"
 	],
 	"dependencies": {
-		"cordova-lib": "^6.0.0",
-		"gulp-util": "^3.0.4",
-		"q": "^1.2.0",
-		"through2": "^2.0.0"
+		"cordova-lib": "^8.1.0",
+		"gulp-util": "^3.0.8",
+		"through2": "^2.0.3"
 	},
 	"devDependencies": {
-		"xo": "^0.13.0"
+		"xo": "^0.23.0"
 	}
 }
