@@ -4,6 +4,7 @@ const fs = require('fs');
 const os = require('os');
 const through = require('through2');
 const gutil = require('gulp-util');
+const glob = require('glob');
 const {cordova} = require('cordova-lib');
 
 module.exports = function (options) {
@@ -75,20 +76,18 @@ module.exports = function (options) {
 				const base = path.join(androidPath, apkOutputPath);
 				const cwd = process.env.PWD;
 
-				const files = fs.readdirSync(base);
+				const files = glob.sync('**/*.apk', {cwd: base});
 
 				for (const file of files) {
-					if (file.endsWith('.apk')) {
-						const filePath = path.join(base, file);
+					const filePath = path.join(base, file);
 
-						// Push the file to the result set
-						this.push(new gutil.File({
-							base,
-							cwd,
-							path: filePath,
-							contents: fs.readFileSync(path.join(base, file))
-						}));
-					}
+					// Push the file to the result set
+					this.push(new gutil.File({
+						base,
+						cwd,
+						path: filePath,
+						contents: fs.readFileSync(path.join(base, file))
+					}));
 				}
 
 				cb();
