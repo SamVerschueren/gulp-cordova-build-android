@@ -1,6 +1,6 @@
 {
 	"name": "gulp-cordova-build-android",
-	"version": "1.5.1",
+	"version": "2.0.0",
 	"description": "Build the cordova project for the Android platform.",
 	"license": "MIT",
 	"repository": "SamVerschueren/gulp-cordova-build-android",
