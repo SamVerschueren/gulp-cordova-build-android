@@ -1,38 +1,31 @@
 {
-  "name": "gulp-cordova-build-android",
-  "version": "1.5.1",
-  "description": "Build the cordova project for the Android platform.",
-  "main": "index.js",
-  "scripts": {
-    "test": "xo"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SamVerschueren/gulp-cordova-build-android.git"
-  },
-  "keywords": [
-    "gulp",
-    "gulpjs",
-    "cordova",
-    "build",
-    "android"
-  ],
-  "author": {
-    "name": "Sam Verschueren",
-    "email": "sam.verschueren@gmail.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/SamVerschueren/gulp-cordova-build-android/issues"
-  },
-  "homepage": "https://github.com/SamVerschueren/gulp-cordova-build-android",
-  "dependencies": {
-    "cordova-lib": "^6.0.0",
-    "gulp-util": "^3.0.4",
-    "q": "^1.2.0",
-    "through2": "^2.0.0"
-  },
-  "devDependencies": {
-    "xo": "^0.13.0"
-  }
+	"name": "gulp-cordova-build-android",
+	"version": "1.5.1",
+	"description": "Build the cordova project for the Android platform.",
+	"license": "MIT",
+	"repository": "SamVerschueren/gulp-cordova-build-android",
+	"author": {
+		"name": "Sam Verschueren",
+		"email": "sam.verschueren@gmail.com"
+	},
+	"main": "index.js",
+	"scripts": {
+		"test": "xo"
+	},
+	"keywords": [
+		"gulp",
+		"gulpjs",
+		"cordova",
+		"build",
+		"android"
+	],
+	"dependencies": {
+		"cordova-lib": "^6.0.0",
+		"gulp-util": "^3.0.4",
+		"q": "^1.2.0",
+		"through2": "^2.0.0"
+	},
+	"devDependencies": {
+		"xo": "^0.13.0"
+	}
 }
